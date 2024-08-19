@@ -45,4 +45,4 @@ for entry in feed.entries:
         repo.git.commit('-m', f'Add post: {entry.title}\nCo-authored-by: rimgosu <newnyup@gmail.com>')
 
 # 변경 사항을 깃허브에 푸시
-repo.git.push()
+repo.git.push('https://github-actions:${{ secrets.GH_PAT }}@github.com/alsdk9349/velog.git')

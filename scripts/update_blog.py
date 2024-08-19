@@ -45,6 +45,5 @@ for entry in feed.entries:
         repo.git.commit('-m', f'Add post: {entry.title}\nCo-authored-by: rimgosu <newnyup@gmail.com>')
 
 # 변경 사항을 깃허브에 푸시
-# 환경 변수에서 토큰을 읽어옵니다
 git_token = os.getenv('GH_PAT')
 repo.git.push(f'https://github-actions:{git_token}@github.com/alsdk9349/velog.git')

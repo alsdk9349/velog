@@ -29,13 +29,18 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
 
-    - name: Push changes
+    - name: Configure Git
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git remote set-url origin https://github.com/alsdk9349/velog.git
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+
+    - name: Commit and Push changes
+      run: |
         git add .
         git commit -m 'Update blog posts'
         git push
       env:
-        GH_PAT: ${{ secrets.GH_PAT }}
+        GIT_AUTH_TOKEN: ${{ secrets.GH_PAT }}

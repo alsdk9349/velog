@@ -5,7 +5,7 @@ import os
 # 벨로그 RSS 피드 URL
 rss_url = 'https://api.velog.io/rss/@alsdk9349'
 
-# 깃허브 레포지토리 경로.
+# 깃허브 레포지토리 경로
 repo_path = '.'
 
 # 'velog-posts' 폴더 경로
@@ -45,10 +45,6 @@ for entry in feed.entries:
         repo.git.commit('-m', f'Add post: {entry.title}\nCo-authored-by: rimgosu <newnyup@gmail.com>')
 
 # 변경 사항을 깃허브에 푸시
-# 환경 변수 설정
-os.environ['GIT_ASKPASS'] = 'echo'
-os.environ['GIT_USERNAME'] = 'github-actions'
-os.environ['GIT_PASSWORD'] = os.getenv('GH_PAT')
-
-# 푸시
-repo.git.push('https://github.com/alsdk9349/velog.git')
+# 환경 변수에서 토큰을 읽어옵니다
+git_token = os.getenv('GH_PAT')
+repo.git.push(f'https://github-actions:{git_token}@github.com/alsdk9349/velog.git')
